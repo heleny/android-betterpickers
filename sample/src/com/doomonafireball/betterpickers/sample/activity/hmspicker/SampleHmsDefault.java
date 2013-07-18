@@ -1,7 +1,13 @@
 package com.doomonafireball.betterpickers.sample.activity.hmspicker;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import com.doomonafireball.betterpickers.hmspicker.HmsPicker;
 import com.doomonafireball.betterpickers.hmspicker.HmsPickerBuilder;
 import com.doomonafireball.betterpickers.hmspicker.HmsPickerDialogFragment;
+import com.doomonafireball.betterpickers.hmspicker.HmsView;
 import com.doomonafireball.betterpickers.sample.R;
 import com.doomonafireball.betterpickers.sample.activity.BaseSampleActivity;
 
@@ -34,13 +40,22 @@ public class SampleHmsDefault extends BaseSampleActivity implements HmsPickerDia
                 HmsPickerBuilder hpb = new HmsPickerBuilder()
                         .setFragmentManager(getSupportFragmentManager())
                         .setStyleResId(R.style.BetterPickersDialogFragment);
+
+                hpb.setTime(new int[] {2, 9, 8, 7});
                 hpb.show();
             }
         });
     }
 
     @Override
-    public void onDialogHmsSet(int reference, int hours, int minutes, int seconds) {
-        text.setText("" + hours + ":" + minutes + ":" + seconds);
+    public void onDialogHmsSet(int reference, int hours, int minutes) {
+        text.setText("" + hours + ":" + minutes);
     }
+
+
+    private BroadcastReceiver myReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+        }
+    };
 }

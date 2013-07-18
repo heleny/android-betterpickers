@@ -12,9 +12,8 @@ import android.widget.LinearLayout;
 
 public class HmsView extends LinearLayout {
 
-    private ZeroTopPaddingTextView mHoursOnes;
+    private ZeroTopPaddingTextView mHoursOnes, mHoursTens;
     private ZeroTopPaddingTextView mMinutesOnes, mMinutesTens;
-    private ZeroTopPaddingTextView mSecondsOnes, mSecondsTens;
     private final Typeface mAndroidClockMonoThin;
     private Typeface mOriginalHoursTypeface;
 
@@ -64,17 +63,14 @@ public class HmsView extends LinearLayout {
         if (mHoursOnes != null) {
             mHoursOnes.setTextColor(mTextColor);
         }
+        if (mHoursTens != null) {
+            mHoursTens.setTextColor(mTextColor);
+        }
         if (mMinutesOnes != null) {
             mMinutesOnes.setTextColor(mTextColor);
         }
         if (mMinutesTens != null) {
             mMinutesTens.setTextColor(mTextColor);
-        }
-        if (mSecondsOnes != null) {
-            mSecondsOnes.setTextColor(mTextColor);
-        }
-        if (mSecondsTens != null) {
-            mSecondsTens.setTextColor(mTextColor);
         }
     }
 
@@ -83,21 +79,11 @@ public class HmsView extends LinearLayout {
         super.onFinishInflate();
 
         mHoursOnes = (ZeroTopPaddingTextView) findViewById(R.id.hours_ones);
+        mHoursTens = (ZeroTopPaddingTextView) findViewById(R.id.hours_tens);
         mMinutesTens = (ZeroTopPaddingTextView) findViewById(R.id.minutes_tens);
         mMinutesOnes = (ZeroTopPaddingTextView) findViewById(R.id.minutes_ones);
-        mSecondsTens = (ZeroTopPaddingTextView) findViewById(R.id.seconds_tens);
-        mSecondsOnes = (ZeroTopPaddingTextView) findViewById(R.id.seconds_ones);
         if (mHoursOnes != null) {
             mOriginalHoursTypeface = mHoursOnes.getTypeface();
-        }
-        // Set the lowest time unit with thin font (excluding hundredths)
-        if (mSecondsTens != null) {
-            mSecondsTens.setTypeface(mAndroidClockMonoThin);
-            mSecondsTens.updatePadding();
-        }
-        if (mSecondsOnes != null) {
-            mSecondsOnes.setTypeface(mAndroidClockMonoThin);
-            mSecondsOnes.updatePadding();
         }
     }
 
@@ -107,11 +93,11 @@ public class HmsView extends LinearLayout {
      * @param hoursOnesDigit the ones digit of the hours TextView
      * @param minutesTensDigit the tens digit of the minutes TextView
      * @param minutesOnesDigit the ones digit of the minutes TextView
-     * @param secondsTensDigit the tens digit of the seconds TextView
-     * @param secondsOnesDigit the ones digit of the seconds TextView
      */
-    public void setTime(int hoursOnesDigit, int minutesTensDigit, int minutesOnesDigit, int secondsTensDigit,
-            int secondsOnesDigit) {
+    public void setTime(int hoursTensDigit, int hoursOnesDigit, int minutesTensDigit, int minutesOnesDigit) {
+        if (mHoursTens != null) {
+            mHoursTens.setText(String.format("%d", hoursTensDigit));
+        }
         if (mHoursOnes != null) {
             mHoursOnes.setText(String.format("%d", hoursOnesDigit));
         }
@@ -120,12 +106,6 @@ public class HmsView extends LinearLayout {
         }
         if (mMinutesOnes != null) {
             mMinutesOnes.setText(String.format("%d", minutesOnesDigit));
-        }
-        if (mSecondsTens != null) {
-            mSecondsTens.setText(String.format("%d", secondsTensDigit));
-        }
-        if (mSecondsOnes != null) {
-            mSecondsOnes.setText(String.format("%d", secondsOnesDigit));
         }
     }
 }

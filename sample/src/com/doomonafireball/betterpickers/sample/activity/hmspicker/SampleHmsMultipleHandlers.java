@@ -45,14 +45,14 @@ public class SampleHmsMultipleHandlers extends BaseSampleActivity
     class MyCustomHandler implements HmsPickerDialogFragment.HmsPickerDialogHandler {
 
         @Override
-        public void onDialogHmsSet(int reference, int hours, int minutes, int seconds) {
+        public void onDialogHmsSet(int reference, int hours, int minutes) {
             Toast.makeText(SampleHmsMultipleHandlers.this, "MyCustomHandler onDialogHmsSet!", Toast.LENGTH_SHORT)
                     .show();
         }
     }
 
     @Override
-    public void onDialogHmsSet(int reference, int hours, int minutes, int seconds) {
-        text.setText("" + hours + ":" + minutes + ":" + seconds);
+    public void onDialogHmsSet(int reference, int hours, int minutes) {
+        text.setText("" + hours + ":" + minutes);
     }
 }

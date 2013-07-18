@@ -114,11 +114,10 @@ public class SampleHmsListAdapter extends BaseSampleActivity {
         }
 
         @Override
-        public void onDialogHmsSet(int reference, int hours, int minutes, int seconds) {
+        public void onDialogHmsSet(int reference, int hours, int minutes) {
             Hms hms = new Hms();
             hms.hours = hours;
             hms.minutes = minutes;
-            hms.seconds = seconds;
             mHmses.set(reference, hms);
             notifyDataSetChanged();
         }

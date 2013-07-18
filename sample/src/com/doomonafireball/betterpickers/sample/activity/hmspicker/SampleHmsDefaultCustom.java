@@ -41,7 +41,7 @@ public class SampleHmsDefaultCustom extends BaseSampleActivity
     }
 
     @Override
-    public void onDialogHmsSet(int reference, int hours, int minutes, int seconds) {
-        text.setText("" + hours + ":" + minutes + ":" + seconds);
+    public void onDialogHmsSet(int reference, int hours, int minutes) {
+        text.setText("" + hours + ":" + minutes);
     }
 }

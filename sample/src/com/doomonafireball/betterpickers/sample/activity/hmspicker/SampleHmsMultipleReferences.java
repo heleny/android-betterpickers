@@ -82,7 +82,7 @@ public class SampleHmsMultipleReferences extends BaseSampleActivity
     }
 
     @Override
-    public void onDialogHmsSet(int reference, int hours, int minutes, int seconds) {
+    public void onDialogHmsSet(int reference, int hours, int minutes) {
         Button buttonToSet;
         switch (reference) {
             case BUTTON_ONE_REFERENCE:
@@ -100,6 +100,6 @@ public class SampleHmsMultipleReferences extends BaseSampleActivity
             default:
                 buttonToSet = buttonOne;
         }
-        buttonToSet.setText("" + hours + ":" + minutes + ":" + seconds);
+        buttonToSet.setText("" + hours + ":" + minutes);
     }
 }

@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 public class HmsPicker extends LinearLayout implements Button.OnClickListener, Button.OnLongClickListener {
 
-    protected int mInputSize = 5;
+    protected int mInputSize = 4;
     protected final Button mNumbers[] = new Button[10];
     protected int mInput[] = new int[mInputSize];
     protected int mInputPointer = -1;
@@ -114,10 +114,6 @@ public class HmsPicker extends LinearLayout implements Button.OnClickListener, B
             mMinutesLabel.setTextColor(mTextColor);
             mMinutesLabel.setBackgroundResource(mKeyBackgroundResId);
         }
-        if (mSecondsLabel != null) {
-            mSecondsLabel.setTextColor(mTextColor);
-            mSecondsLabel.setBackgroundResource(mKeyBackgroundResId);
-        }
         if (mDelete != null) {
             mDelete.setBackgroundResource(mButtonBackgroundResId);
             mDelete.setImageDrawable(getResources().getDrawable(mDeleteDrawableSrcResId));
@@ -166,7 +162,6 @@ public class HmsPicker extends LinearLayout implements Button.OnClickListener, B
 
         mHoursLabel = (TextView) findViewById(R.id.hours_label);
         mMinutesLabel = (TextView) findViewById(R.id.minutes_label);
-        mSecondsLabel = (TextView) findViewById(R.id.seconds_label);
         mDivider = findViewById(R.id.divider);
 
         restyleViews();
@@ -249,7 +244,7 @@ public class HmsPicker extends LinearLayout implements Button.OnClickListener, B
      * Hide digit by passing -2 (for highest hours digit only);
      */
     protected void updateHms() {
-        mEnteredHms.setTime(mInput[4], mInput[3], mInput[2], mInput[1], mInput[0]);
+        mEnteredHms.setTime(mInput[3], mInput[2], mInput[1], mInput[0]);
     }
 
     private void addClickedNumber(int val) {
@@ -295,7 +290,7 @@ public class HmsPicker extends LinearLayout implements Button.OnClickListener, B
      * @return the inputted hours
      */
     public int getHours() {
-        int hours = mInput[4];
+        int hours = mInput[3] * 10 + mInput[2];
         return hours;
     }
 
@@ -305,15 +300,6 @@ public class HmsPicker extends LinearLayout implements Button.OnClickListener, B
      * @return the inputted minutes
      */
     public int getMinutes() {
-        return mInput[3] * 10 + mInput[2];
-    }
-
-    /**
-     * Return the seconds as currently inputted by the user.
-     *
-     * @return the inputted seconds
-     */
-    public int getSeconds() {
         return mInput[1] * 10 + mInput[0];
     }
 
@@ -415,5 +401,9 @@ public class HmsPicker extends LinearLayout implements Button.OnClickListener, B
             mLeft.setContentDescription(null);
             mRight.setContentDescription(null);
         }
+    }
+
+    public HmsView getHmsView() {
+        return mEnteredHms;
     }
 }

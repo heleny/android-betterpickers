@@ -1,5 +1,6 @@
 package com.doomonafireball.betterpickers.hmspicker;
 
+import android.content.Intent;
 import com.doomonafireball.betterpickers.R;
 
 import android.app.Activity;
@@ -34,6 +35,7 @@ public class HmsPickerDialogFragment extends DialogFragment {
     private int mButtonBackgroundResId;
     private int mDialogBackgroundResId;
     private Vector<HmsPickerDialogHandler> mHmsPickerDialogHandlers = new Vector<HmsPickerDialogHandler>();
+    private static int[] mTime;
 
     /**
      * Create an instance of the Picker (used internally)
@@ -42,7 +44,8 @@ public class HmsPickerDialogFragment extends DialogFragment {
      * @param themeResId the style resource ID for theming
      * @return a Picker!
      */
-    public static HmsPickerDialogFragment newInstance(int reference, int themeResId) {
+    public static HmsPickerDialogFragment newInstance(int reference, int themeResId, int[] time) {
+        mTime = time;
         final HmsPickerDialogFragment frag = new HmsPickerDialogFragment();
         Bundle args = new Bundle();
         args.putInt(REFERENCE_KEY, reference);
@@ -108,18 +111,18 @@ public class HmsPickerDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 for (HmsPickerDialogHandler handler : mHmsPickerDialogHandlers) {
-                    handler.onDialogHmsSet(mReference, mPicker.getHours(), mPicker.getMinutes(), mPicker.getSeconds());
+                    handler.onDialogHmsSet(mReference, mPicker.getHours(), mPicker.getMinutes());
                 }
                 final Activity activity = getActivity();
                 final Fragment fragment = getTargetFragment();
                 if (activity instanceof HmsPickerDialogHandler) {
                     final HmsPickerDialogHandler act =
                             (HmsPickerDialogHandler) activity;
-                    act.onDialogHmsSet(mReference, mPicker.getHours(), mPicker.getMinutes(), mPicker.getSeconds());
+                    act.onDialogHmsSet(mReference, mPicker.getHours(), mPicker.getMinutes());
                 } else if (fragment instanceof HmsPickerDialogHandler) {
                     final HmsPickerDialogHandler frag =
                             (HmsPickerDialogHandler) fragment;
-                    frag.onDialogHmsSet(mReference, mPicker.getHours(), mPicker.getMinutes(), mPicker.getSeconds());
+                    frag.onDialogHmsSet(mReference, mPicker.getHours(), mPicker.getMinutes());
                 }
                 dismiss();
             }
@@ -136,7 +139,15 @@ public class HmsPickerDialogFragment extends DialogFragment {
         mPicker.setTheme(mTheme);
         getDialog().getWindow().setBackgroundDrawableResource(mDialogBackgroundResId);
 
+        if (mTime != null && mTime.length == 4) {
+            mPicker.getHmsView().setTime(mTime[0], mTime[1], mTime[2], mTime[3]);
+        }
         return v;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);    //To change body of overridden methods use File | Settings | File Templates.
     }
 
     /**
@@ -144,7 +155,7 @@ public class HmsPickerDialogFragment extends DialogFragment {
      */
     public interface HmsPickerDialogHandler {
 
-        void onDialogHmsSet(int reference, int hours, int minutes, int seconds);
+        void onDialogHmsSet(int reference, int hours, int minutes);
     }
 
     /**

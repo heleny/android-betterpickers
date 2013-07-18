@@ -19,6 +19,7 @@ public class HmsPickerBuilder {
     private Fragment targetFragment;
     private int mReference;
     private Vector<HmsPickerDialogHandler> mHmsPickerDialogHandlers = new Vector<HmsPickerDialogHandler>();
+    private int[] mTime;
 
     /**
      * Attach a FragmentManager. This is required for creation of the Fragment.
@@ -104,11 +105,15 @@ public class HmsPickerBuilder {
         }
         ft.addToBackStack(null);
 
-        final HmsPickerDialogFragment fragment = HmsPickerDialogFragment.newInstance(mReference, styleResId);
+        HmsPickerDialogFragment fragment = HmsPickerDialogFragment.newInstance(mReference, styleResId, mTime);
         if (targetFragment != null) {
             fragment.setTargetFragment(targetFragment, 0);
         }
         fragment.setHmsPickerDialogHandlers(mHmsPickerDialogHandlers);
         fragment.show(ft, "hms_dialog");
+    }
+
+    public void setTime(int[] time) {
+        mTime = time;
     }
 }

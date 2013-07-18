@@ -20,6 +20,13 @@
                 android:baselineAligned="false"
                 android:gravity="top">
             <com.doomonafireball.betterpickers.ZeroTopPaddingTextView
+                android:id="@+id/hours_tens"
+                android:singleLine="true"
+                android:ellipsize="none"
+                style="@style/medium_bold_hms"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+            <com.doomonafireball.betterpickers.ZeroTopPaddingTextView
                     android:id="@+id/hours_ones"
                     android:singleLine="true"
                     android:ellipsize="none"
@@ -58,29 +65,6 @@
                     style="@style/label"
                     android:gravity="top"
                     android:text="@string/hms_picker_minutes_label"/>
-            <com.doomonafireball.betterpickers.ZeroTopPaddingTextView
-                    android:id="@+id/seconds_tens"
-                    android:singleLine="true"
-                    android:ellipsize="none"
-                    style="@style/medium_light_hms"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
-            <com.doomonafireball.betterpickers.ZeroTopPaddingTextView
-                    android:id="@+id/seconds_ones"
-                    android:singleLine="true"
-                    android:ellipsize="none"
-                    style="@style/medium_light_hms"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
-            <com.doomonafireball.betterpickers.ZeroTopPaddingTextView
-                    android:id="@+id/seconds_label"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:singleLine="true"
-                    android:ellipsize="none"
-                    style="@style/label"
-                    android:gravity="top"
-                    android:text="@string/hms_picker_seconds_label"/>
         </com.doomonafireball.betterpickers.hmspicker.HmsView>
         <ImageButton
                 android:id="@+id/delete"
