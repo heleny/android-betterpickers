@@ -265,6 +265,11 @@ public class HmsPicker extends LinearLayout implements Button.OnClickListener, B
             return;
         }
 
+        if (mSetButton != null && getTime() == 0) {
+            mSetButton.setEnabled(false);
+            return;
+        }
+
         // Nothing entered - disable
         if (mInputPointer == -1) {
             mSetButton.setEnabled(false);
@@ -374,7 +379,7 @@ public class HmsPicker extends LinearLayout implements Button.OnClickListener, B
      * @return an int representing the time in seconds
      */
     public int getTime() {
-        return mInput[4] * 3600 + mInput[3] * 600 + mInput[2] * 60 + mInput[1] * 10 + mInput[0];
+        return mInput[3] * 3600 + mInput[1] * 600 + mInput[0] * 60;
     }
 
     public void saveEntryState(Bundle outState, String key) {
