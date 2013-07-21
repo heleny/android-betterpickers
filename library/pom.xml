@@ -21,8 +21,10 @@
         </dependency>
 
         <dependency>
-            <groupId>com.google.android</groupId>
+            <groupId>com.android.support</groupId>
             <artifactId>support-v4</artifactId>
+            <version>13.0.0</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
