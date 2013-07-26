@@ -379,7 +379,7 @@ public class HmsPicker extends LinearLayout implements Button.OnClickListener, B
      * @return an int representing the time in seconds
      */
     public int getTime() {
-        return mInput[3] * 3600 + mInput[1] * 600 + mInput[0] * 60;
+        return mInput[3] * 3600 * 10 + mInput[2] * 3600 + mInput[1] * 600 + mInput[0] * 60;
     }
 
     public void saveEntryState(Bundle outState, String key) {
