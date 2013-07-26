@@ -141,6 +141,24 @@ public class HmsPickerDialogFragment extends DialogFragment {
 
         if (mTime != null && mTime.length == 4) {
             mPicker.getHmsView().setTime(mTime[0], mTime[1], mTime[2], mTime[3]);
+
+            // figure out number of zeros at the beginning
+            int numZeroBeginning = 0;
+            for (int i = 0; i < 4; i++) {
+                if (mTime[i] == 0) {
+                    numZeroBeginning++;
+                } else {
+                    break;
+                }
+            }
+
+            for (int i = numZeroBeginning; i < 4; i++) {
+                mPicker.addClickedNumber(mTime[i]);
+            }
+
+            if (numZeroBeginning < 4) {
+                mPicker.enableDeleteButton();
+            }
         }
         return v;
     }

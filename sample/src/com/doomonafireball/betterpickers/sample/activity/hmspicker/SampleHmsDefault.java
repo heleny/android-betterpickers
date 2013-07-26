@@ -41,7 +41,7 @@ public class SampleHmsDefault extends BaseSampleActivity implements HmsPickerDia
                         .setFragmentManager(getSupportFragmentManager())
                         .setStyleResId(R.style.BetterPickersDialogFragment);
 
-                hpb.setTime(new int[] {2, 9, 8, 7});
+                hpb.setTime(new int[] {1, 2, 3, 4});
                 hpb.show();
             }
         });

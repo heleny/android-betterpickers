@@ -247,7 +247,7 @@ public class HmsPicker extends LinearLayout implements Button.OnClickListener, B
         mEnteredHms.setTime(mInput[3], mInput[2], mInput[1], mInput[0]);
     }
 
-    private void addClickedNumber(int val) {
+    public void addClickedNumber(int val) {
         if (mInputPointer < mInputSize - 1) {
             for (int i = mInputPointer; i >= 0; i--) {
                 mInput[i + 1] = mInput[i];
@@ -411,4 +411,9 @@ public class HmsPicker extends LinearLayout implements Button.OnClickListener, B
     public HmsView getHmsView() {
         return mEnteredHms;
     }
+
+    public void enableDeleteButton() {
+        mDelete.setEnabled(true);
+    }
+
 }
