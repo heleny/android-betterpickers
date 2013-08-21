@@ -267,6 +267,7 @@ public class HmsPicker extends LinearLayout implements Button.OnClickListener, B
 
         if (mSetButton != null && getTime() == 0) {
             mSetButton.setEnabled(false);
+            reset();
             return;
         }
 
